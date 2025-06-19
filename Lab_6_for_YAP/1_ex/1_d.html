@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка Email</title>
+</head>
+<body>
+<h1>Проверка адреса электронной почты</h1>
+<script>
+    // Запрашиваем у пользователя адрес электронной почты
+    let email = prompt("Введите адрес электронной почты:");
+
+    // Проверяем наличие символа '@'
+    if (email.includes('@')) {
+        alert(`Адрес "${email}" содержит символ '@'.`);
+        document.write(`<p>Адрес "${email}" содержит символ '@'.</p>`);
+    } else {
+        alert(`Предупреждение: адрес "${email}" НЕ содержит символ '@'.`);
+        document.write(`<p>Предупреждение: адрес "${email}" НЕ содержит символ '@'.</p>`);
+    }
+</script>
+</body>
+</html>

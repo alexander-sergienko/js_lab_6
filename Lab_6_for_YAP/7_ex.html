@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Очистка элемента</title>
+</head>
+<body>
+<h1>Очистка содержимого элемента</h1>
+
+<ol id="list">
+  <li>Привет</li>
+  <li>Мир</li>
+  <li>Элемент 3</li>
+  <li>Элемент 4</li>
+</ol>
+
+<button onclick="clearList()">Очистить список</button>
+
+<script>
+  // Функция clear(elem), которая удаляет всё содержимое из elem
+  function clear(elem) {
+    // Способ 1: Установка innerHTML в пустую строку.
+    // Это самый простой и часто используемый способ, но он перепарсивает весь HTML внутри элемента.
+    elem.innerHTML = '';
+
+    // Способ 2: Удаление дочерних элементов в цикле.
+    // Более эффективен для большого количества дочерних элементов, так как не перепарсирует HTML.
+    // while (elem.firstChild) {
+    //     elem.removeChild(elem.firstChild);
+    // }
+  }
+
+  // Пример использования функции:
+  function clearList() {
+    let list = document.getElementById('list');
+    if (list) {
+      clear(list);
+      alert("Список очищен!");
+    } else {
+      alert("Элемент с id 'list' не найден.");
+    }
+  }
+</script>
+</body>
+</html>

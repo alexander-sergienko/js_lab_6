@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вычисление sin(x)</title>
+</head>
+<body>
+<h1>Вычисление синуса числа</h1>
+<script>
+    // Запрашиваем у пользователя значение x
+    let x_str = prompt("Введите значение x для вычисления sin(x):");
+    // Преобразуем введенное значение в число
+    let x = parseFloat(x_str);
+
+    // Проверяем, является ли введенное значение числом
+    if (!isNaN(x)) {
+        // Вычисляем синус x
+        let result = Math.sin(x);
+        // Выводим результат в браузере
+        alert(`sin(${x}) = ${result}`);
+        document.write(`<p>Результат: sin(${x}) = ${result}</p>`);
+    } else {
+        // Если введено некорректное значение
+        alert("Вы ввели некорректное число. Пожалуйста, попробуйте еще раз.");
+        document.write("<p>Ошибка: введено некорректное значение.</p>");
+    }
+</script>
+</body>
+</html>

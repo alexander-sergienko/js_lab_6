@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Окрашивание внешних ссылок</title>
+  <style>
+    /* Добавим немного стиля для списка, чтобы он выглядел аккуратнее */
+    ul {
+      list-style: none; /* Убираем стандартные маркеры */
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    /* Стиль для оранжевых ссылок будет применен через JS */
+  </style>
+</head>
+<body>
+<h1>Внешние ссылки</h1>
+
+<a name="list">the list</a>
+
+<ul>
+  <li><a href="http://google.com">http://google.com</a></li>
+  <li><a href="/tutorial">/tutorial.html</a></li>
+  <li><a href="local/path">local/path</a></li>
+  <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+  <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+  <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+  <li><a href="https://example.com/another-external">https://example.com/another-external</a></li>
+  <li><a href="//domain.com/path">Scheme-less link</a></li> </ul>
+
+<script>
+  // Получаем все ссылки на странице
+  let links = document.querySelectorAll('a');
+
+  // Проходим по каждой ссылке
+  links.forEach(link => {
+    let href = link.getAttribute('href');
+
+    // Проверяем условия для внешней ссылки:
+    // 1. href содержит "://" (для определения протокола)
+    // 2. href НЕ начинается с "http://internal.com"
+    if (href && href.includes('://') && !href.startsWith('http://internal.com')) {
+      link.style.color = 'orange'; // Устанавливаем оранжевый цвет
+    }
+  });
+</script>
+</body>
+</html>

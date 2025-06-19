@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Месяцы до 1 сентября</title>
+</head>
+<body>
+<h1>Сколько месяцев осталось до 1 сентября</h1>
+<script>
+  // Получаем текущую дату
+  let currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth(); // Месяцы от 0 до 11
+
+  // Создаем дату 1 сентября текущего года
+  let septemberFirst = new Date(currentYear, 8, 1); // 8 - это сентябрь (0-индексированный)
+
+  // Если текущая дата уже после 1 сентября текущего года, то считаем до 1 сентября следующего года
+  if (currentDate > septemberFirst) {
+    septemberFirst.setFullYear(currentYear + 1);
+  }
+
+  // Вычисляем разницу в миллисекундах
+  let timeDiff = septemberFirst.getTime() - currentDate.getTime();
+
+  // Переводим разницу в месяцы. Это приближенное значение, так как месяцы имеют разное количество дней.
+  // Для более точного подсчета месяцев, нужно учесть разницу лет, месяцев и дней.
+  let monthsRemaining = (septemberFirst.getFullYear() - currentDate.getFullYear()) * 12;
+  monthsRemaining -= currentDate.getMonth();
+  monthsRemaining += septemberFirst.getMonth();
+
+  // Корректировка, если текущий день в месяце больше, чем 1 (день 1 сентября)
+  if (currentDate.getDate() > 1 && currentMonth < 8) {
+    monthsRemaining--;
+  }
+
+  // Чтобы избежать отрицательного результата, если текущая дата очень близка к 1 сентября, но уже после него в текущем месяце
+  if (monthsRemaining < 0) {
+    monthsRemaining = 0;
+  }
+
+  alert(`До 1 сентября осталось примерно ${monthsRemaining} месяцев.`);
+  document.write(`<p>Текущая дата: ${currentDate.toLocaleDateString()}</p>`);
+  document.write(`<p>Дата 1 сентября: ${septemberFirst.toLocaleDateString()}</p>`);
+  document.write(`<p>До 1 сентября осталось примерно ${monthsRemaining} месяцев.</p>`);
+</script>
+</body>
+</html>

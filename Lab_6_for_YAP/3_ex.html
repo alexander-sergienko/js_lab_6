@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Получение элементов DOM</title>
+</head>
+<body>
+
+<div>Пользователи: </div>
+
+<ul>
+    <li>Джон</li>
+    <li>Пит</li>
+</ul>
+
+<script>
+    // Получаем элемент <div>
+    let divElement = document.querySelector('div');
+    console.log("Элемент <div>:", divElement);
+    document.write("<p>Элемент &lt;div&gt; получен. (См. консоль разработчика)</p>");
+
+    // Получаем элемент <ul>
+    let ulElement = document.querySelector('ul');
+    console.log("Элемент <ul>:", ulElement);
+    document.write("<p>Элемент &lt;ul&gt; получен. (См. консоль разработчика)</p>");
+
+
+    // Получаем второй <li> (с именем Пит)
+    // Есть несколько способов:
+    // 1. По индексу:
+    let secondLiByIndex = document.querySelectorAll('li')[1];
+    console.log("Второй <li> (по индексу):", secondLiByIndex);
+    document.write("<p>Второй &lt;li&gt; (Пит) получен по индексу. (См. консоль)</p>");
+
+    // 2. По текстовому содержимому (менее надежный, если текст может меняться):
+    let allLiElements = document.querySelectorAll('li');
+    let secondLiByText = null;
+    for (let i = 0; i < allLiElements.length; i++) {
+        if (allLiElements[i].textContent.trim() === 'Пит') {
+            secondLiByText = allLiElements[i];
+            break;
+        }
+    }
+    console.log("Второй <li> (по тексту 'Пит'):", secondLiByText);
+    document.write("<p>Второй &lt;li&gt; (Пит) получен по тексту. (См. консоль)</p>");
+
+    // 3. Используя nth-child (CSS селектор):
+    let secondLiByNthChild = document.querySelector('li:nth-child(2)');
+    console.log("Второй <li> (с помощью nth-child):", secondLiByNthChild);
+    document.write("<p>Второй &lt;li&gt; (Пит) получен с помощью nth-child. (См. консоль)</p>");
+
+</script>
+</body>
+</html>

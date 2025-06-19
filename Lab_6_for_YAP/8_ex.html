@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Динамический список</title>
+</head>
+<body>
+<h1>Создание динамического списка</h1>
+
+<ul id="myDynamicList">
+</ul>
+
+<button onclick="createList()">Создать список</button>
+
+<script>
+    function createList() {
+        let listContainer = document.getElementById('myDynamicList');
+        // Очищаем существующий список перед созданием нового, если он уже есть
+        listContainer.innerHTML = '';
+
+        // Запрашиваем количество пунктов
+        let itemCount_str = prompt("Введите количество пунктов для списка:");
+        let itemCount = parseInt(itemCount_str);
+
+        if (isNaN(itemCount) || itemCount <= 0 || itemCount % 1 !== 0) {
+            alert("Ошибка: введено некорректное количество пунктов. Пожалуйста, введите натуральное число.");
+            return; // Выходим из функции, если ввод некорректен
+        }
+
+        // Для каждого пункта:
+        for (let i = 0; i < itemCount; i++) {
+            // Запрашиваем содержимое пункта
+            let itemContent = prompt(`Введите содержимое пункта №${i + 1}:`);
+
+            // Создаем элемент <li>
+            let listItem = document.createElement('li');
+            // Устанавливаем текстовое содержимое для <li>
+            listItem.textContent = itemContent;
+
+            // Добавляем созданный <li> к <ul>
+            listContainer.appendChild(listItem);
+        }
+        alert("Список успешно создан!");
+    }
+</script>
+</body>
+</html>

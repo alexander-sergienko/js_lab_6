@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Принадлежность точки квадрату</title>
+</head>
+<body>
+<h1>Проверка принадлежности точки квадрату</h1>
+<script>
+    // Запрашиваем координаты двух противоположных вершин квадрата
+    let x1_str = prompt("Введите x-координату первой вершины квадрата:");
+    let y1_str = prompt("Введите y-координату первой вершины квадрата:");
+    let x2_str = prompt("Введите x-координату второй вершины квадрата:");
+    let y2_str = prompt("Введите y-координату второй вершины квадрата:");
+
+    let x1 = parseFloat(x1_str);
+    let y1 = parseFloat(y1_str);
+    let x2 = parseFloat(x2_str);
+    let y2 = parseFloat(y2_str);
+
+    // Запрашиваем координаты точки
+    let px_str = prompt("Введите x-координату проверяемой точки:");
+    let py_str = prompt("Введите y-координату проверяемой точки:");
+
+    let px = parseFloat(px_str);
+    let py = parseFloat(py_str);
+
+    // Проверяем корректность ввода всех координат
+    if (!isNaN(x1) && !isNaN(y1) && !isNaN(x2) && !isNaN(y2) && !isNaN(px) && !isNaN(py)) {
+        // Определяем минимальные и максимальные координаты квадрата
+        let minX = Math.min(x1, x2);
+        let maxX = Math.max(x1, x2);
+        let minY = Math.min(y1, y2);
+        let maxY = Math.max(y1, y2);
+
+        // Проверяем, принадлежит ли точка квадрату
+        if (px >= minX && px <= maxX && py >= minY && py <= maxY) {
+            alert(`Точка (${px}, ${py}) принадлежит квадрату.`);
+            document.write(`<p>Точка (${px}, ${py}) принадлежит квадрату.</p>`);
+        } else {
+            alert(`Точка (${px}, ${py}) НЕ принадлежит квадрату.`);
+            document.write(`<p>Точка (${px}, ${py}) НЕ принадлежит квадрату.</p>`);
+        }
+    } else {
+        alert("Ошибка: введены некорректные координаты. Пожалуйста, введите числа.");
+        document.write("<p>Ошибка: введены некорректные координаты.</p>");
+    }
+</script>
+</body>
+</html>

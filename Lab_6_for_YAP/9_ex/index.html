@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Cards</title>
+  <link rel="stylesheet" href="style.css"> </head>
+<body>
+
+<script>
+  // a. Используя методы DOM API, написать код для создания точно такой же разметки
+  // как в файле (всё, что внутри body) поэлементно, через метод createElement.
+
+  function createInitialMarkup() {
+    const body = document.body;
+
+    // Создаем div.wrapper
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('wrapper');
+
+    // Создаем div.card-container
+    const cardContainer = document.createElement('div');
+    cardContainer.classList.add('card-container');
+    cardContainer.id = 'cardContainer'; // Дадим ID для удобства
+
+    wrapper.appendChild(cardContainer);
+    body.appendChild(wrapper);
+  }
+
+  // b. Верните всю разметку макета обратно в HTML, кроме разметки карточки
+  // (div.card и весь внутренний набор разметки).
+  // Напишите скрипт, который будет через каждый 2000 мс создавать и
+  // добавлять новую карточку, пока их не станет 6 штук.
+
+  document.addEventListener('DOMContentLoaded', () => {
+    createInitialMarkup();
+
+    const cardContainer = document.getElementById('cardContainer');
+    let cardCount = 0;
+    let timerId;
+
+    // Функция для генерации случайных имен (пункт с)
+    const firstNames = ["Алексей", "Елена", "Дмитрий", "Наталья", "Сергей", "Анна", "Михаил", "Ольга", "Иван", "Мария"];
+    const lastNames = ["Иванов", "Петрова", "Сидоров", "Кузнецова", "Смирнов", "Волкова", "Морозов", "Лебедева", "Козлов", "Соколова"];
+
+    function generateRandomName() {
+      const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+      const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      return `${randomFirstName} ${randomLastName}`;
+    }
+
+    function createCard() {
+      if (cardCount >= 6) {
+        clearInterval(timerId); // Деактивируем таймер после создания 6 карточек
+        return;
+      }
+
+      // Создаем div.card
+      const card = document.createElement('div');
+      card.classList.add('card');
+
+      // Создаем img
+      const img = document.createElement('img');
+      // К ссылке нужно добавлять уникальный параметр (счетчик или рандомное число)
+      const uniqueParam = Math.floor(Math.random() * 1000000); // Пример рандомного числа
+      img.src = `https://thispersondoesnotexist.com/?${uniqueParam}`;
+      img.alt = "Generated Person";
+
+      // Создаем div.card-body
+      const cardBody = document.createElement('div');
+      cardBody.classList.add('card-body');
+
+      // Создаем h3.card-title
+      const cardTitle = document.createElement('h3');
+      cardTitle.classList.add('card-title');
+      // Используем функцию для генерации случайных имен
+      cardTitle.textContent = generateRandomName(); // Пункт c
+
+      // Создаем p.card-text
+      const cardText = document.createElement('p');
+      cardText.classList.add('card-text');
+      cardText.textContent = "Это автоматически сгенерированный текст для карточки.";
+
+      // Собираем элементы в структуру карточки
+      cardBody.appendChild(cardTitle);
+      cardBody.appendChild(cardText);
+      card.appendChild(img);
+      card.appendChild(cardBody);
+
+      // Добавляем карточку в контейнер
+      cardContainer.appendChild(card);
+      cardCount++;
+      console.log(`Создана карточка №${cardCount}`);
+    }
+
+    // Запускаем создание карточек с интервалом 2000 мс
+    timerId = setInterval(createCard, 2000);
+  });
+
+</script>
+</body>
+</html>

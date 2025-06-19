@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="ru">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Прибавление дней к дате</title>
+</head>
+<body>
+<h1>Прибавление дней к текущей дате</h1>
+<script>
+    // Запрашиваем у пользователя количество дней
+    let daysToAdd_str = prompt("Введите количество дней для прибавления к текущей дате:");
+    let daysToAdd = parseInt(daysToAdd_str);
+
+    // Проверяем корректность ввода
+    if (isNaN(daysToAdd) || daysToAdd < 0 || daysToAdd % 1 !== 0) {
+        alert("Ошибка: введено некорректное количество дней. Пожалуйста, введите неотрицательное целое число.");
+        document.write("<p>Ошибка: введено некорректное количество дней.</p>");
+    } else {
+        // Получаем текущую дату
+        let currentDate = new Date();
+        document.write(`<p>Текущая дата: ${currentDate.toLocaleDateString()}</p>`);
+
+        // Прибавляем дни
+        currentDate.setDate(currentDate.getDate() + daysToAdd);
+
+        // Выводим новую дату
+        alert(`Новая дата после прибавления ${daysToAdd} дней: ${currentDate.toLocaleDateString()}`);
+        document.write(`<p>Новая дата после прибавления ${daysToAdd} дней: ${currentDate.toLocaleDateString()}</p>`);
+    }
+</script>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

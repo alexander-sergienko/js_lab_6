@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Доля латинских букв</title>
+</head>
+<body>
+<h1>Определение доли латинских букв в строке</h1>
+<script>
+  // Запрашиваем у пользователя строку
+  let inputString = prompt("Введите строку:");
+
+  if (inputString === null || inputString.trim() === "") {
+    alert("Вы не ввели строку.");
+    document.write("<p>Вы не ввели строку.</p>");
+  } else {
+    let latinLetterCount = 0;
+    // Регулярное выражение для проверки латинских букв (без учета регистра)
+    const latinRegex = /[a-zA-Z]/;
+
+    // Итерируемся по каждому символу строки
+    for (let i = 0; i < inputString.length; i++) {
+      if (latinRegex.test(inputString[i])) {
+        latinLetterCount++;
+      }
+    }
+
+    // Вычисляем долю в процентах
+    let totalChars = inputString.length;
+    let percentage = (totalChars > 0) ? (latinLetterCount / totalChars) * 100 : 0;
+
+    alert(`В строке "${inputString}" ${percentage.toFixed(2)}% символов являются латинскими буквами.`);
+    document.write(`<p>В строке "${inputString}" ${percentage.toFixed(2)}% символов являются латинскими буквами.</p>`);
+  }
+</script>
+</body>
+</html>

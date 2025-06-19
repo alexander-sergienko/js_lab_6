@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Удаление повторных слов</title>
+</head>
+<body>
+<h1>Удаление повторяющихся слов из строки</h1>
+<script>
+  // Запрашиваем у пользователя строку
+  let inputString = prompt("Введите строку, состоящую из слов, разделенных пробелами:");
+
+  if (inputString === null || inputString.trim() === "") {
+    alert("Вы не ввели строку.");
+    document.write("<p>Вы не ввели строку.</p>");
+  } else {
+    // Разбиваем строку на слова, используя один или несколько пробелов как разделитель
+    // Фильтруем пустые строки, которые могут получиться, если есть несколько пробелов подряд
+    let words = inputString.split(/\s+/).filter(word => word.length > 0);
+
+    // Используем Set для хранения уникальных слов и сохранения порядка
+    let uniqueWords = [];
+    let seenWords = new Set();
+
+    for (let i = 0; i < words.length; i++) {
+      let word = words[i].toLowerCase(); // Приводим к нижнему регистру для сравнения без учета регистра
+      if (!seenWords.has(word)) {
+        seenWords.add(word);
+        uniqueWords.push(words[i]); // Добавляем оригинальное слово
+      }
+    }
+
+    // Собираем уникальные слова обратно в строку
+    let resultString = uniqueWords.join(' ');
+
+    alert(`Оригинальная строка: "${inputString}"\nСтрока без повторных слов: "${resultString}"`);
+    document.write(`<p>Оригинальная строка: "${inputString}"</p>`);
+    document.write(`<p>Строка без повторных слов: "${resultString}"</p>`);
+  }
+</script>
+</body>
+</html>
